@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About PassForge - Free Secure Password Generator</title>
+<meta name="description" content="Learn about PassForge, the free, secure, and privacy-focused password generator. 100% client-side processing with cryptographic security.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://aginpappy.github.io/password-generator/about.html">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #0a0c0f;
+    color: #e8eaed;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #111418;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: clamp(24px, 5vw, 48px);
+  }
+  h1 {
+    font-size: clamp(28px, 6vw, 36px);
+    color: #00e5a0;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-size: clamp(20px, 4vw, 24px);
+    color: #fff;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+  h3 {
+    font-size: clamp(16px, 3vw, 18px);
+    color: #e8eaed;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  p {
+    margin-bottom: 16px;
+    color: #9ca3af;
+  }
+  ul {
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  li {
+    margin-bottom: 8px;
+    color: #9ca3af;
+  }
+  a {
+    color: #00e5a0;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .highlight {
+    background: rgba(0,229,160,0.1);
+    border-left: 3px solid #00e5a0;
+    padding: 16px;
+    margin: 24px 0;
+    border-radius: 4px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #00e5a0;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .stat-card {
+    background: #181c22;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: clamp(24px, 5vw, 32px);
+    font-weight: 700;
+    color: #00e5a0;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 4px;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .feature-card {
+    background: #181c22;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .feature-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .feature-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .feature-desc {
+    font-size: 14px;
+    color: #9ca3af;
+  }
+  code {
+    background: #181c22;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #00e5a0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="./" class="back-link">← Back to PassForge</a>
+  
+  <h1>About PassForge</h1>
+  <p style="font-size: 18px; color: #e8eaed;">Your privacy-first password generator for the modern web.</p>
+
+  <div class="highlight">
+    <strong>Mission:</strong> To provide everyone with free, secure, and truly private password generation tools that never compromise on security or user privacy.
+  </div>
+
+  <h2>What is PassForge?</h2>
+  <p>PassForge is a free, open-source password generator that runs entirely in your web browser. Unlike other password tools that require account creation or cloud synchronization, PassForge generates cryptographically secure passwords instantly without ever transmitting your data.</p>
+  <p>Built with modern web technologies, PassForge leverages the Web Crypto API to create truly random passwords that are mathematically impossible to predict or crack.</p>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Client-Side</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">0</div>
+      <div class="stat-label">Data Collection</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">Free</div>
+      <div class="stat-label">Forever</div>
+    </div>
+  </div>
+
+  <h2>Key Features</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <div class="feature-title">Cryptographically Secure</div>
+      <div class="feature-desc">Uses crypto.getRandomValues() for true randomness, not pseudo-random algorithms</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <div class="feature-title">100% Private</div>
+      <div class="feature-desc">All processing happens locally. Passwords never leave your device</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">Instant Generation</div>
+      <div class="feature-desc">No waiting, no loading. Generate unlimited passwords instantly</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <div class="feature-title">Highly Customizable</div>
+      <div class="feature-desc">Control length, character types, and exclusions for perfect passwords</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Strength Analysis</div>
+      <div class="feature-desc">Real-time entropy calculation and password strength visualization</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📦</div>
+      <div class="feature-title">Bulk Generation</div>
+      <div class="feature-desc">Generate multiple passwords at once for various accounts</div>
+    </div>
+  </div>
+
+  <h2>Why Choose PassForge?</h2>
+  
+  <h3>🔐 Security First</h3>
+  <p>PassForge uses the Web Crypto API's <code>crypto.getRandomValues()</code> method, which provides cryptographically strong random values. This is the same technology used by major security companies and government agencies for generating secure keys.</p>
+
+  <h3>🕵️ Privacy Focused</h3>
+  <p>Unlike password managers that sync to the cloud or password generators that track usage, PassForge is completely client-side. Your passwords are generated in your browser and never transmitted over the network. We don't track, log, or store anything.</p>
+
+  <h3>💯 Free & Open</h3>
+  <p>PassForge is completely free to use with no hidden costs, premium tiers, or feature limitations. The code is transparent and can be inspected to verify our security and privacy claims.</p>
+
+  <h3>🎯 Easy to Use</h3>
+  <p>No account required, no complex setup, no learning curve. Just visit the page and start generating secure passwords immediately. The intuitive interface makes it accessible for everyone from beginners to security professionals.</p>
+
+  <h2>Technical Details</h2>
+  
+  <h3>Random Number Generation</h3>
+  <p>PassForge uses <code>crypto.getRandomValues()</code> from the Web Crypto API, which provides cryptographically secure pseudo-random numbers (CSPRNG). This ensures that generated passwords are truly unpredictable and cannot be reproduced or guessed.</p>
+
+  <h3>Character Sets</h3>
+  <ul>
+    <li><strong>Uppercase:</strong> 26 characters (A-Z)</li>
+    <li><strong>Lowercase:</strong> 26 characters (a-z)</li>
+    <li><strong>Numbers:</strong> 10 characters (0-9)</li>
+    <li><strong>Symbols:</strong> 25 special characters</li>
+  </ul>
+
+  <h3>Entropy Calculation</h3>
+  <p>Password strength is measured in bits of entropy using the formula: <code>entropy = length × log₂(charset_size)</code>. Higher entropy means exponentially more possible combinations, making brute-force attacks impractical.</p>
+
+  <h3>Security Best Practices</h3>
+  <ul>
+    <li>Minimum recommended length: 12-16 characters</li>
+    <li>Use all character types for maximum entropy</li>
+    <li>Generate unique passwords for each account</li>
+    <li>Store passwords in a reputable password manager</li>
+    <li>Enable two-factor authentication when available</li>
+  </ul>
+
+  <h2>Browser Compatibility</h2>
+  <p>PassForge works on all modern browsers that support the Web Crypto API:</p>
+  <ul>
+    <li>Chrome/Edge 37+</li>
+    <li>Firefox 34+</li>
+    <li>Safari 11+</li>
+    <li>Opera 24+</li>
+    <li>All major mobile browsers</li>
+  </ul>
+
+  <h2>FAQ</h2>
+  
+  <h3>Is PassForge really free?</h3>
+  <p>Yes, completely free with no hidden costs, subscriptions, or premium features. It will remain free forever.</p>
+
+  <h3>Do I need to create an account?</h3>
+  <p>No. PassForge works instantly without any registration or login.</p>
+
+  <h3>Are my passwords stored anywhere?</h3>
+  <p>No. Passwords are generated in your browser and never sent to our servers or stored anywhere. Once you leave or refresh the page, they're gone unless you saved them elsewhere.</p>
+
+  <h3>How secure are the generated passwords?</h3>
+  <p>Extremely secure. Using the Web Crypto API's cryptographically strong random values, a 16-character password with all character types has 95⁶⁰ possible combinations, making it effectively impossible to crack.</p>
+
+  <h3>Can I trust PassForge?</h3>
+  <p>You don't have to trust us blindly. You can inspect the source code, use browser developer tools to verify no network requests are made, or even run it offline. Transparency is built into our architecture.</p>
+
+  <h3>Does PassForge work offline?</h3>
+  <p>Once the page is loaded, password generation works completely offline. You can even save the HTML file and use it without an internet connection.</p>
+
+  <h2>Contact & Support</h2>
+  <p>Have questions, suggestions, or found a bug? We'd love to hear from you!</p>
+  <ul>
+    <li><strong>Email:</strong> <a href="mailto:aginpappy93@gmail.com">aginpappy93@gmail.com</a></li>
+    <li><strong>Location:</strong> United Arab Emirates</li>
+  </ul>
+
+  <h2>Future Roadmap</h2>
+  <p>We're constantly improving PassForge. Upcoming features include:</p>
+  <ul>
+    <li>Passphrase generator (random word combinations)</li>
+    <li>Password strength checker for existing passwords</li>
+    <li>Multiple language support</li>
+    <li>Offline PWA (Progressive Web App) support</li>
+    <li>Password history (stored locally only)</li>
+    <li>Custom password patterns</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>Open Source:</strong> Interested in contributing or using our code? PassForge is open to collaboration and transparency. Contact us to learn more.
+  </div>
+
+  <p style="margin-top: 48px; text-align: center; color: #6b7280; font-size: 14px;">
+    <a href="./">Return to PassForge</a> | 
+    <a href="privacy.html">Privacy Policy</a> | 
+    <a href="mailto:aginpappy93@gmail.com">Contact</a>
+  </p>
+</div>
+</body>
+</html>

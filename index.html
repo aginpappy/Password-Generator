@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Primary Meta Tags -->
+<title>PassForge - Free Secure Password Generator | Create Strong Passwords Online</title>
+<meta name="title" content="PassForge - Free Secure Password Generator | Create Strong Passwords Online">
+<meta name="description" content="Generate cryptographically strong passwords instantly with PassForge. Free, secure password generator with customizable length, special characters, and bulk generation. 100% client-side, never sent over network.">
+<meta name="keywords" content="password generator, secure password, strong password generator, random password, password creator, bulk password generator, cryptographic password, free password tool, online password generator">
+<meta name="author" content="PassForge">
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+<meta name="revisit-after" content="7 days">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://aginpappy.github.io/password-generator/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aginpappy.github.io/password-generator/">
+<meta property="og:title" content="PassForge - Free Secure Password Generator">
+<meta property="og:description" content="Generate cryptographically strong passwords instantly. Free, secure, and 100% client-side. Never sent over network.">
+<meta property="og:image" content="https://aginpappy.github.io/password-generator/og-image.png">
+<meta property="og:site_name" content="PassForge">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://aginpappy.github.io/password-generator/">
+<meta name="twitter:title" content="PassForge - Free Secure Password Generator">
+<meta name="twitter:description" content="Generate cryptographically strong passwords instantly. Free, secure, and 100% client-side.">
+<meta name="twitter:image" content="https://aginpappy.github.io/password-generator/twitter-image.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Preconnect to external resources -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Fonts with display swap for better performance -->
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PassForge",
+  "url": "https://aginpappy.github.io/password-generator",
+  "description": "Free secure password generator that creates cryptographically strong passwords with customizable options",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "softwareVersion": "1.0",
+  "author": {
+    "@type": "Organization",
+    "name": "PassForge"
+  },
+  "featureList": [
+    "Cryptographically secure password generation",
+    "Customizable password length (4-64 characters)",
+    "Multiple character sets (uppercase, lowercase, numbers, symbols)",
+    "Password strength analysis",
+    "Entropy calculation",
+    "Bulk password generation",
+    "Exclude ambiguous characters",
+    "Client-side processing",
+    "No data transmission"
+  ]
+}
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0c0f;
+    --surface: #111418;
+    --surface2: #181c22;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e8eaed;
+    --muted: #6b7280;
+    --accent: #00e5a0;
+    --accent2: #00b87a;
+    --accent-dim: rgba(0,229,160,0.12);
+    --accent-glow: rgba(0,229,160,0.25);
+    --red: #ff4d6d;
+    --amber: #f59e0b;
+    --yellow: #facc15;
+    --green: #00e5a0;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 70% 20%, rgba(0,229,160,0.04) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(0,100,255,0.03) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 560px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+
+  .header h1 {
+    font-family: var(--mono);
+    font-size: clamp(24px, 5vw, 28px);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .header h1 span { color: var(--accent); }
+
+  .header p {
+    font-size: clamp(12px, 2.5vw, 13px);
+    color: var(--muted);
+    margin-top: 6px;
+    font-weight: 300;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  /* Password Output */
+  .password-section {
+    padding: clamp(16px, 3vw, 20px);
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+
+  .pass-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .pass-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+    min-height: 48px;
+  }
+
+  .pass-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px var(--border2);
+    pointer-events: none;
+  }
+
+  #password-display {
+    flex: 1;
+    font-family: var(--mono);
+    font-size: clamp(13px, 2.8vw, 15px);
+    font-weight: 400;
+    color: var(--text);
+    word-break: break-all;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    min-height: 24px;
+  }
+
+  #password-display .char-upper { color: #7dd3fc; }
+  #password-display .char-lower { color: var(--text); }
+  #password-display .char-num { color: var(--accent); }
+  #password-display .char-sym { color: #f472b6; }
+
+  .icon-btn {
+    background: none;
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .icon-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+  .icon-btn:active { transform: scale(0.95); }
+  .icon-btn svg { width: 15px; height: 15px; }
+
+  .pass-actions { display: flex; gap: 8px; }
+
+  .copy-btn {
+    flex: 1;
+    background: var(--accent-dim);
+    border: 1px solid rgba(0,229,160,0.2);
+    border-radius: 10px;
+    color: var(--accent);
+    font-family: var(--sans);
+    font-size: clamp(12px, 2.5vw, 13px);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 12px 16px;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+  }
+
+  .copy-btn:hover { background: rgba(0,229,160,0.2); }
+  .copy-btn:active { transform: scale(0.98); }
+  .copy-btn.copied { background: rgba(0,229,160,0.25); color: var(--accent); }
+
+  .regen-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 12px 16px;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: clamp(12px, 2.5vw, 13px);
+    font-family: var(--sans);
+    font-weight: 500;
+    min-height: 44px;
+  }
+
+  .regen-btn:hover { color: var(--text); border-color: var(--border2); }
+  .regen-btn:active { transform: scale(0.98); }
+  .regen-btn svg { width: 14px; height: 14px; transition: transform 0.3s; }
+  .regen-btn.spinning svg { transform: rotate(360deg); }
+
+  /* Strength Meter */
+  .strength-section {
+    padding: clamp(14px, 3vw, 16px) clamp(16px, 3vw, 20px);
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+
+  .strength-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .strength-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .strength-text {
+    font-family: var(--mono);
+    font-size: clamp(11px, 2.2vw, 12px);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+  }
+
+  .bars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+
+  .bar {
+    flex: 1;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--surface2);
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+
+  .bar.lit { box-shadow: 0 0 8px currentColor; }
+
+  .entropy-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  .entropy-val { color: var(--text); font-weight: 500; }
+
+  /* Controls */
+  .controls-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .ctrl-section {
+    padding: clamp(14px, 3vw, 16px) clamp(16px, 3vw, 20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ctrl-section:last-child { border-bottom: none; }
+
+  .ctrl-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+
+  .ctrl-row:last-child { margin-bottom: 0; }
+
+  .ctrl-info { flex: 1; }
+  .ctrl-name { font-size: clamp(12px, 2.5vw, 13px); font-weight: 500; color: var(--text); }
+  .ctrl-desc { font-size: 11px; color: var(--muted); margin-top: 1px; font-family: var(--mono); }
+
+  /* Slider */
+  .slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 60%;
+    min-width: 180px;
+  }
+
+  .slider-val {
+    font-family: var(--mono);
+    font-size: clamp(20px, 4vw, 22px);
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 36px;
+    text-align: right;
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    flex: 1;
+    height: 4px;
+    background: var(--surface2);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--accent-glow);
+    transition: transform 0.1s;
+  }
+
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  input[type=range]::-webkit-slider-thumb:active { transform: scale(1.1); }
+  
+  input[type=range]::-moz-range-thumb {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--accent); cursor: pointer; border: none;
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+
+  /* Toggle */
+  .toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .toggle input { opacity: 0; width: 0; height: 0; }
+
+  .toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--muted);
+    border-radius: 50%;
+    transition: all 0.2s;
+  }
+
+  .toggle input:checked + .toggle-slider {
+    background: var(--accent-dim);
+    border-color: rgba(0,229,160,0.3);
+  }
+
+  .toggle input:checked + .toggle-slider::before {
+    transform: translate(20px, -50%);
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+
+  /* Bulk */
+  .bulk-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: clamp(14px, 3vw, 16px) clamp(16px, 3vw, 20px);
+    margin-bottom: 12px;
+  }
+
+  .bulk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+
+  .bulk-title {
+    font-size: clamp(12px, 2.5vw, 13px);
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .count-ctrl {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .count-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border2);
+    background: var(--surface2);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.1s;
+    touch-action: manipulation;
+  }
+
+  .count-btn:hover { background: var(--border2); }
+  .count-btn:active { transform: scale(0.95); }
+
+  .bulk-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .bulk-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .bulk-pass {
+    font-family: var(--mono);
+    font-size: clamp(11px, 2.2vw, 12px);
+    color: var(--text);
+    letter-spacing: 0.04em;
+    flex: 1;
+    word-break: break-all;
+  }
+
+  .bulk-copy {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    transition: color 0.1s;
+    min-width: 32px;
+    min-height: 32px;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  .bulk-copy:hover { color: var(--accent); }
+  .bulk-copy:active { transform: scale(0.9); }
+  .bulk-copy svg { width: 14px; height: 14px; }
+
+  .gen-bulk-btn {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: clamp(12px, 2.5vw, 13px);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 12px;
+    margin-top: 10px;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  .gen-bulk-btn:hover { background: var(--border2); }
+  .gen-bulk-btn:active { transform: scale(0.98); }
+
+  /* Excluded chars */
+  .exclude-input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: clamp(12px, 2.5vw, 13px);
+    padding: 10px 12px;
+    outline: none;
+    margin-top: 8px;
+    transition: border-color 0.15s;
+    min-height: 42px;
+  }
+
+  .exclude-input:focus { border-color: rgba(0,229,160,0.3); }
+  .exclude-input::placeholder { color: var(--muted); }
+
+  /* Content Section */
+  .content-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: clamp(20px, 4vw, 24px);
+    margin-bottom: 12px;
+  }
+
+  .content-section h2 {
+    font-size: clamp(16px, 3vw, 18px);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+    font-family: var(--sans);
+  }
+
+  .content-section p {
+    font-size: clamp(13px, 2.5vw, 14px);
+    line-height: 1.6;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .content-section p:last-child { margin-bottom: 0; }
+
+  .content-section ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 12px 0;
+  }
+
+  .content-section li {
+    font-size: clamp(13px, 2.5vw, 14px);
+    line-height: 1.6;
+    color: var(--muted);
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .content-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 1rem;
+    font-family: var(--mono);
+    letter-spacing: 0.05em;
+    padding: 0 12px;
+  }
+
+  .footer span { color: var(--accent); }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: clamp(16px, 4vw, 24px);
+    flex-wrap: wrap;
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 24px;
+  }
+
+  .footer-links a {
+    color: var(--accent);
+    font-size: clamp(12px, 2.5vw, 13px);
+    text-decoration: none;
+    font-family: var(--sans);
+    transition: opacity 0.2s;
+  }
+
+  .footer-links a:hover { opacity: 0.7; }
+
+  .footer-copyright {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 12px;
+    font-family: var(--sans);
+  }
+
+  /* Scroll */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border); }
+
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .cursor::after { content: '|'; animation: pulse 1s infinite; color: var(--accent); margin-left: 1px; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Mobile optimizations */
+  @media (max-width: 480px) {
+    body { padding: 0.5rem; }
+    .container { padding: 0; }
+    .header { margin-bottom: 1rem; }
+    .pass-box { padding: 10px 12px; }
+    .slider-wrap { width: 100%; min-width: auto; }
+    .bulk-list { max-height: 180px; }
+  }
+
+  /* Tablet optimization */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .container { max-width: 600px; }
+  }
+
+  /* Desktop optimization */
+  @media (min-width: 1024px) {
+    .container { max-width: 580px; }
+    body { padding: 2rem 1rem; }
+  }
+
+  /* High DPI displays */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .bar { height: 5px; }
+  }
+
+  /* Reduced motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    body::before, .grid-bg { display: none; }
+    .bulk-section, .footer-links { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<main class="container">
+  <!-- Main heading for SEO -->
+  <header class="header">
+    <div class="logo" role="text">// security tool</div>
+    <h1>Pass<span>Forge</span></h1>
+    <p>Cryptographically strong password generator</p>
+  </header>
+
+  <!-- Password Output -->
+  <section class="password-section" aria-labelledby="password-label">
+    <h2 class="pass-label" id="password-label">Generated Password</h2>
+    <div class="pass-box" role="region" aria-live="polite">
+      <div id="password-display" class="cursor" aria-label="Generated password"></div>
+    </div>
+    <div class="pass-actions">
+      <button class="copy-btn" id="copy-btn" onclick="copyPassword()" aria-label="Copy password to clipboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy Password
+      </button>
+      <button class="regen-btn" id="regen-btn" onclick="regenerate()" aria-label="Generate new password">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+        New
+      </button>
+    </div>
+  </section>
+
+  <!-- Strength Meter -->
+  <section class="strength-section" aria-labelledby="strength-label">
+    <div class="strength-header">
+      <h2 class="strength-label" id="strength-label">Strength</h2>
+      <div class="strength-text" id="strength-text" aria-live="polite">—</div>
+    </div>
+    <div class="bars" role="progressbar" aria-label="Password strength indicator">
+      <div class="bar" id="b1"></div>
+      <div class="bar" id="b2"></div>
+      <div class="bar" id="b3"></div>
+      <div class="bar" id="b4"></div>
+      <div class="bar" id="b5"></div>
+    </div>
+    <div class="entropy-row">
+      <span>Entropy</span>
+      <span class="entropy-val" id="entropy-val" aria-live="polite">— bits</span>
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <section class="controls-card" aria-labelledby="controls-heading">
+    <h2 class="sr-only" id="controls-heading">Password Settings</h2>
+    
+    <div class="ctrl-section">
+      <div class="ctrl-row">
+        <div class="ctrl-info">
+          <label for="length-slider" class="ctrl-name">Length</label>
+          <div class="ctrl-desc">characters</div>
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="length-slider" min="4" max="64" value="16" oninput="onLengthChange(this.value)" aria-label="Password length">
+          <div class="slider-val" id="length-val" aria-live="polite">16</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-row">
+        <div class="ctrl-info">
+          <div class="ctrl-name">Uppercase</div>
+          <div class="ctrl-desc">A B C … Z</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt-upper" checked onchange="generate()" aria-label="Include uppercase letters">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-info">
+          <div class="ctrl-name">Lowercase</div>
+          <div class="ctrl-desc">a b c … z</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt-lower" checked onchange="generate()" aria-label="Include lowercase letters">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-info">
+          <div class="ctrl-name">Numbers</div>
+          <div class="ctrl-desc">0 1 2 … 9</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt-num" checked onchange="generate()" aria-label="Include numbers">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-info">
+          <div class="ctrl-name">Symbols</div>
+          <div class="ctrl-desc">! @ # $ % ^ & *</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt-sym" checked onchange="generate()" aria-label="Include symbols">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-row">
+        <div class="ctrl-info">
+          <div class="ctrl-name">Exclude ambiguous</div>
+          <div class="ctrl-desc">removes 0 O l 1 I</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="opt-noambig" onchange="generate()" aria-label="Exclude ambiguous characters">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="ctrl-info">
+        <label for="exclude-chars" class="ctrl-name" style="margin-bottom:4px">Exclude characters</label>
+        <input type="text" class="exclude-input" id="exclude-chars" placeholder='e.g.  ; " ` ~' oninput="generate()" aria-label="Custom characters to exclude">
+      </div>
+    </div>
+  </section>
+
+  <!-- Bulk Generate -->
+  <section class="bulk-section" aria-labelledby="bulk-heading">
+    <div class="bulk-header">
+      <h2 class="bulk-title" id="bulk-heading">Bulk Generate</h2>
+      <div class="count-ctrl" role="group" aria-label="Bulk password count">
+        <button class="count-btn" onclick="changeCount(-1)" aria-label="Decrease count">−</button>
+        <span id="bulk-count" aria-live="polite">5</span>
+        <button class="count-btn" onclick="changeCount(1)" aria-label="Increase count">+</button>
+      </div>
+    </div>
+    <div class="bulk-list" id="bulk-list" role="list" aria-label="Bulk generated passwords"></div>
+    <button class="gen-bulk-btn" onclick="generateBulk()" aria-label="Generate multiple passwords">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      Generate List
+    </button>
+  </section>
+
+  <!-- SEO Content Section -->
+  <article class="content-section">
+    <h2>Why Use a Strong Password Generator?</h2>
+    <p>Creating strong, unique passwords is crucial for protecting your online accounts from cyber threats. Our free password generator uses cryptographic algorithms to create truly random, secure passwords that are virtually impossible to crack.</p>
+    
+    <h3 style="font-size: clamp(14px, 2.8vw, 16px); margin-top: 16px; margin-bottom: 8px; color: var(--text);">Key Features:</h3>
+    <ul>
+      <li>Cryptographically secure random generation using Web Crypto API</li>
+      <li>Customizable length from 4 to 64 characters</li>
+      <li>Multiple character sets: uppercase, lowercase, numbers, and symbols</li>
+      <li>Real-time password strength analysis with entropy calculation</li>
+      <li>Bulk password generation for multiple accounts</li>
+      <li>100% client-side processing - passwords never leave your device</li>
+      <li>No registration required - completely free to use</li>
+    </ul>
+
+    <h3 style="font-size: clamp(14px, 2.8vw, 16px); margin-top: 16px; margin-bottom: 8px; color: var(--text);">Password Security Best Practices:</h3>
+    <ul>
+      <li>Use passwords at least 12-16 characters long for optimal security</li>
+      <li>Include a mix of uppercase, lowercase, numbers, and special characters</li>
+      <li>Never reuse passwords across different accounts</li>
+      <li>Change passwords regularly, especially for sensitive accounts</li>
+      <li>Use a password manager to store your passwords securely</li>
+      <li>Enable two-factor authentication (2FA) whenever possible</li>
+    </ul>
+  </article>
+
+  <footer class="footer">
+    <div>Generated <span>client-side</span> · Never sent over network · <span>crypto.getRandomValues()</span></div>
+    
+    <div class="footer-links">
+      <a href="about.html" rel="nofollow">About</a>
+      <a href="privacy.html" rel="nofollow">Privacy Policy</a>
+      <a href="mailto:aginpappy93@gmail.com">Contact</a>
+    </div>
+    
+    <p class="footer-copyright">© 2026 PassForge · United Arab Emirates</p>
+  </footer>
+</main>
+
+<script>
+const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const LOWER = 'abcdefghijklmnopqrstuvwxyz';
+const NUMS  = '0123456789';
+const SYMS  = '!@#$%^&*()-_=+[]{}|;:,.<>?';
+const AMBIG = new Set(['0','O','l','1','I']);
+
+let bulkCount = 5;
+let currentPassword = '';
+
+function getCharset() {
+  const noAmbig = document.getElementById('opt-noambig').checked;
+  const exclude = new Set(document.getElementById('exclude-chars').value.split(''));
+  let pool = '';
+  if (document.getElementById('opt-upper').checked) pool += UPPER;
+  if (document.getElementById('opt-lower').checked) pool += LOWER;
+  if (document.getElementById('opt-num').checked)   pool += NUMS;
+  if (document.getElementById('opt-sym').checked)   pool += SYMS;
+  if (noAmbig) pool = pool.split('').filter(c => !AMBIG.has(c)).join('');
+  pool = pool.split('').filter(c => !exclude.has(c)).join('');
+  const unique = [...new Set(pool)].join('');
+  return unique;
+}
+
+function secureRandom(max) {
+  const arr = new Uint32Array(1);
+  let result;
+  do {
+    crypto.getRandomValues(arr);
+    result = arr[0];
+  } while (result >= Math.floor(4294967296 / max) * max);
+  return result % max;
+}
+
+function buildPassword(len, charset) {
+  if (!charset || len < 1) return '';
+  let pass = '';
+  for (let i = 0; i < len; i++) pass += charset[secureRandom(charset.length)];
+  return pass;
+}
+
+function getEntropy(len, charsetSize) {
+  if (!charsetSize) return 0;
+  return Math.round(len * Math.log2(charsetSize));
+}
+
+function getStrength(entropy) {
+  if (entropy < 28) return { level: 1, label: 'Very Weak', color: '#ff4d6d' };
+  if (entropy < 36) return { level: 2, label: 'Weak',      color: '#f97316' };
+  if (entropy < 60) return { level: 3, label: 'Fair',      color: '#facc15' };
+  if (entropy < 80) return { level: 4, label: 'Strong',    color: '#4ade80' };
+  return              { level: 5, label: 'Very Strong', color: '#00e5a0' };
+}
+
+function colorizePassword(pass) {
+  return pass.split('').map(c => {
+    if (UPPER.includes(c)) return `<span class="char-upper">${c}</span>`;
+    if (LOWER.includes(c)) return `<span class="char-lower">${c}</span>`;
+    if (NUMS.includes(c))  return `<span class="char-num">${c}</span>`;
+    return `<span class="char-sym">${c}</span>`;
+  }).join('');
+}
+
+function generate() {
+  const len = parseInt(document.getElementById('length-slider').value);
+  const charset = getCharset();
+  currentPassword = buildPassword(len, charset);
+
+  const display = document.getElementById('password-display');
+  display.innerHTML = colorizePassword(currentPassword);
+  display.className = '';
+
+  const entropy = getEntropy(len, charset.length);
+  const strength = getStrength(entropy);
+
+  document.getElementById('entropy-val').textContent = entropy + ' bits';
+  document.getElementById('strength-text').textContent = charset ? strength.label : '—';
+  document.getElementById('strength-text').style.color = charset ? strength.color : 'var(--muted)';
+
+  for (let i = 1; i <= 5; i++) {
+    const bar = document.getElementById('b' + i);
+    if (charset && i <= strength.level) {
+      bar.style.background = strength.color;
+      bar.style.boxShadow = `0 0 8px ${strength.color}55`;
+    } else {
+      bar.style.background = 'var(--surface2)';
+      bar.style.boxShadow = 'none';
+    }
+  }
+}
+
+function regenerate() {
+  const btn = document.getElementById('regen-btn');
+  btn.classList.add('spinning');
+  generate();
+  setTimeout(() => btn.classList.remove('spinning'), 300);
+}
+
+function copyPassword() {
+  if (!currentPassword) return;
+  navigator.clipboard.writeText(currentPassword).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Password`;
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function onLengthChange(val) {
+  document.getElementById('length-val').textContent = val;
+  generate();
+}
+
+function changeCount(delta) {
+  bulkCount = Math.max(1, Math.min(20, bulkCount + delta));
+  document.getElementById('bulk-count').textContent = bulkCount;
+}
+
+function generateBulk() {
+  const len = parseInt(document.getElementById('length-slider').value);
+  const charset = getCharset();
+  const list = document.getElementById('bulk-list');
+  list.innerHTML = '';
+  for (let i = 0; i < bulkCount; i++) {
+    const pass = buildPassword(len, charset);
+    const item = document.createElement('div');
+    item.className = 'bulk-item';
+    item.setAttribute('role', 'listitem');
+    item.innerHTML = `<span class="bulk-pass">${pass}</span>
+      <button class="bulk-copy" title="Copy" onclick="copyBulk(this, '${pass.replace(/'/g, "\\'")}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      </button>`;
+    list.appendChild(item);
+  }
+}
+
+function copyBulk(btn, pass) {
+  navigator.clipboard.writeText(pass).then(() => {
+    btn.style.color = 'var(--accent)';
+    setTimeout(() => btn.style.color = '', 1500);
+  });
+}
+
+// Screen reader only class
+const style = document.createElement('style');
+style.textContent = '.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }';
+document.head.appendChild(style);
+
+// Generate initial password
+generate();
+
+// Service Worker registration for PWA (optional)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    // navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+</script>
+
+</body>
+</html>
